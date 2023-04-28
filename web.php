@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShirtsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +16,10 @@ use App\Http\Controllers\CartController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('homepage');
-// });
-
-Route::get('/', [HomeController::class,'index']);
-
-// Route::get('/homepage', [HomeController::class, 'index']);
+Route::get('/', function () {
+    return view('homepage');
+});
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('/admin', function () {
@@ -35,10 +32,6 @@ Route::get('admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edi
 Route::put('admin/{id}', [AdminController::class, 'update'])->name('admin.update');
 Route::delete('admin/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
 
-
-
-
-
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -46,13 +39,3 @@ Route::get('/shirts', 'App\Http\Controllers\ProductController@showShirts');
 Route::get('/pants', 'App\Http\Controllers\ProductController@showPants');
 Route::get('/accessories', 'App\Http\Controllers\ProductController@showAccessories');
 Route::get('/shoes', 'App\Http\Controllers\ProductController@showShoes');
-
-
-
-
-Route::get('cart',[CartController::class, 'index']);
-Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('cart', [CartController::class, 'store'])->name('cart.store');
-Route::delete('cart/{id}', [CartController::class, 'destroy'])->name('cart.delete');
-Route::post('cart/{id}', [CartController::class, 'edit'])->name('cart.edit');
-Route::post('clear', [CartController::class, 'clear'])->name('cart.clear');
